@@ -36,13 +36,13 @@ def jso():
 
 @app.route("/m3u8/<path:link>")
 def playlist(link):
-    req=requests.get( link.replace("aman","&").replace("piyush","?").replace("extension=ts","extension=m3u8").replace(".com:80",".com").replace("http:/","http://"))
-    link=req.url
-    data=req.text
+    req=requests.get( link.replace("aman","&").replace("piyush","?").replace("extension=ts","extension=m3u8").replace(".com:80",".com").replace("http:/","http://"))#
+    link=req.url.split("/live/")[0].replace("http://","http:/")#
+    data=req.text.replace("/hls/","/hls/"+link+"/hls/")#
     #lank=link.strip("/")
     #return data.replace("/hls/",f"/hls/{link[7:27]}/hls/")
     final=make_response(data)
-    #final.headers["Content-Type"] = "application/vnd.apple.mpegurl"
+    final.headers["Content-Type"] = "application/vnd.apple.mpegurl"
     final.headers["Access-Control-Allow-Origin"]="*"
     final.headers["Access-Control-Allow-Headers"]="Origin, Content-Type, Accept"
     final.headers["Access-Control-Allow-Methods"]="GET, OPTIONS"
@@ -50,8 +50,9 @@ def playlist(link):
 
 @app.route("/hls/<path:ts>")
 def tss(ts):
-    final=make_response(requests.get("http://f17s20.alphapx.me:80/hls/"+ts).content)#yahan text nhi content dete hai kyunki text mei utf-8 encided ts atta hai aur work nhi krta yehi Maine toffee nei Kiya tha 
-    final.headers["Content-Type"] = "video/MP2T"
+    ts=ts.replace("http:/","http://")#
+    final=make_response(requests.get(ts).content)#yahan text nhi content dete hai kyunki text mei utf-8 encided ts atta hai aur work nhi krta yehi Maine toffee nei Kiya tha 
+    final.headers["Content-Type"] = "application/octet-stream"#
     final.headers["Access-Control-Allow-Origin"]="*"
     final.headers["Access-Control-Allow-Headers"]="Origin, Content-Type, Accept"
     final.headers["Access-Control-Allow-Methods"]="GET, OPTIONS"
