@@ -21,8 +21,6 @@ def jso():
     #fin={}
     js={"type": "list","headline": "Videos","template": {"tag": "Web","type": "separate","layout": "0,0,2,4","icon": "live-tv", "color": "msx-glass"}}
     dt=[]
-    return data
-    '''
     #for i in range(0,len(data)):
     for dota in data["js"]["data"]:
         if dota["tv_genre_id"]=="127":
@@ -33,7 +31,7 @@ def jso():
     final.headers["Access-Control-Allow-Origin"]="*"
     final.headers["Access-Control-Allow-Headers"]="Origin, Content-Type, Accept"
     final.headers["Access-Control-Allow-Methods"]="GET, OPTIONS"
-    return final'''
+    return final
 
 @app.route("/m3u8/<path:link>")
 def playlist(link):
@@ -58,4 +56,4 @@ def tss(ts):
     final.headers["Access-Control-Allow-Headers"]="Origin, Content-Type, Accept"
     final.headers["Access-Control-Allow-Methods"]="GET, OPTIONS"
     return final
-#app.run()
+app.run()
