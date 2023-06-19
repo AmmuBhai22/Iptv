@@ -21,7 +21,7 @@ def jso():
     #fin={}
     js={"type": "list","headline": "Videos","template": {"tag": "Web","type": "separate","layout": "0,0,2,4","icon": "live-tv", "color": "msx-glass"}}
     dt=[]
-    return data["js"]["data"]
+    return data
     '''
     #for i in range(0,len(data)):
     for dota in data["js"]["data"]:
