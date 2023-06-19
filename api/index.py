@@ -51,7 +51,7 @@ def playlist(link):
 @app.route("/hls/<path:ts>")
 def tss(ts):
     final=make_response(requests.get("http://f17s20.alphapx.me:80/hls/"+ts).content)#yahan text nhi content dete hai kyunki text mei utf-8 encided ts atta hai aur work nhi krta yehi Maine toffee nei Kiya tha 
-    final.headers["Content-Type"] = "application/octet-stream"
+    final.headers["Content-Type"] = "video/MP2T"
     final.headers["Access-Control-Allow-Origin"]="*"
     final.headers["Access-Control-Allow-Headers"]="Origin, Content-Type, Accept"
     final.headers["Access-Control-Allow-Methods"]="GET, OPTIONS"
