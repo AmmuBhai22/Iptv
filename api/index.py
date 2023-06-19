@@ -32,7 +32,6 @@ def jso():
     final.headers["Access-Control-Allow-Origin"]="*"
     final.headers["Access-Control-Allow-Headers"]="Origin, Content-Type, Accept"
     final.headers["Access-Control-Allow-Methods"]="GET, OPTIONS"
-    
     return final
 
 @app.route("/tata")
